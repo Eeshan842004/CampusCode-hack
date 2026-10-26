@@ -8,7 +8,10 @@ import { toggleTheme } from "../lib/theme";
 export default function Palette({ onClose }: { onClose: () => void }) {
   const navigate = useNavigate();
   const ref = useRef<HTMLDialogElement>(null);
-  useEffect(() => { ref.current?.showModal(); }, []);
+  useEffect(() => {
+    ref.current?.showModal();
+    ref.current?.querySelector<HTMLInputElement>("[cmdk-input]")?.focus(); // showModal focuses the cmdk root otherwise
+  }, []);
   const go = (to: string) => { onClose(); navigate(to); };
   return (
     <dialog ref={ref} className="modal palette" aria-label="Command palette" onClose={onClose} onClick={(e) => { if (e.target === ref.current) onClose(); }} style={{ marginTop: "12vh" }}>

@@ -104,7 +104,9 @@ export default function Rounds() {
   const now = useNow(60_000);
   const [params, setParams] = useSearchParams();
   const regs = s.registrations.filter((r) => bySlug(r.slug)?.status !== "completed");
-  const slug = params.get("h") && regs.some((r) => r.slug === params.get("h")) ? params.get("h")! : regs[0]?.slug;
+  // Default to the event with a live round, so a fresh registration doesn't hide the active submission.
+  const live = regs.find((r) => bySlug(r.slug)?.status === "live") ?? regs[0];
+  const slug = params.get("h") && regs.some((r) => r.slug === params.get("h")) ? params.get("h")! : live?.slug;
   const h = slug ? bySlug(slug) : undefined;
   const [round, setRound] = useState(0);
   const [drawer, setDrawer] = useState(false);
