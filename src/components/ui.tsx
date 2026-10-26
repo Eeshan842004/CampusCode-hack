@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router";
 import { STEPS, type Status, type Step } from "../data/mock";
 import { initials } from "../lib/format";
@@ -146,4 +147,9 @@ export function Dialog({ open, onClose, className = "modal", labelledBy, childre
       {children}
     </dialog>
   );
+}
+
+/** The page's primary action, pinned above the tab bar on phones (hidden on larger screens). */
+export function MobileCTA({ children }: { children: ReactNode }) {
+  return <><span className="m-cta-anchor" hidden />{createPortal(<div className="m-cta">{children}</div>, document.body)}</>;
 }

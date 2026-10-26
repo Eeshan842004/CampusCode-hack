@@ -98,14 +98,14 @@ export default function Hackathons() {
     <div className="view-in">
       <PageHead eyebrow="Discover / The arena" title="HACKATHONS." desc={`${hackathons.length} hackathons · ${live} live · ${s.saved.length} saved. Open a row for prizes, dates and team rules.`} aside={<PageCount value={live} label="Live now" />} />
 
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
+      <div className="toolbar" style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
         <Tabs label="Filter by status" value={filter} onChange={(v) => { setParams(v === "all" ? {} : { status: v }, { replace: true }); setOpen(null); }}
           tabs={[{ id: "all", label: "All", count: counts.all }, { id: "live", label: "Live", count: counts.live }, { id: "open", label: "Open", count: counts.open }, { id: "upcoming", label: "Upcoming", count: counts.upcoming }, { id: "completed", label: "Closed", count: counts.completed }]} />
         <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
           <label style={{ position: "relative", display: "block" }}>
             <span className="sr-only">Search hackathons</span>
             <Search size={16} style={{ position: "absolute", left: 12, top: 15, color: "var(--ink-3)" }} aria-hidden="true" />
-            <input className="input" style={{ paddingLeft: 36, width: 240, minHeight: 46 }} type="search" placeholder="Search title, tag, organiser" value={q} onChange={(e) => setQ(e.target.value)} />
+            <input className="input" style={{ paddingLeft: 36, width: 240, minHeight: 46 }} type="search" placeholder="Search hackathons" value={q} onChange={(e) => setQ(e.target.value)} />
           </label>
           <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span className="sr-only">Sort by</span>

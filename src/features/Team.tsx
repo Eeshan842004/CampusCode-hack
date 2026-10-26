@@ -143,7 +143,7 @@ export default function Team() {
 
         {team ? (
           <div className="grid gap-3 lg:grid-cols-12">
-            <div className="card card-pad lg:col-span-7" style={{ display: "grid", placeItems: "center", minHeight: 420 }}><Orbit team={team} /></div>
+            <div className="card card-pad lg:col-span-7" style={{ display: "grid", placeItems: "center", minHeight: 420, overflow: "hidden" }}><Orbit team={team} /></div>
             <div className="lg:col-span-5" style={{ display: "grid", gap: 12, alignContent: "start" }}>
               <div className="card card-pad">
                 <span className="card-label">{bySlug(team.slug)!.title}</span>

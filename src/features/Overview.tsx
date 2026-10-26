@@ -3,7 +3,7 @@ import NumberFlow, { NumberFlowGroup } from "@number-flow/react";
 import { toast } from "sonner";
 import { useStore, checklistDone } from "../app/store";
 import { activity, bySlug, hackathons, me, personById, ticker, type Registration } from "../data/mock";
-import { ArrowLink, Avatar, Empty, Ring, SecHead, StatusChip, Stepper } from "../components/ui";
+import { ArrowLink, Avatar, Empty, MobileCTA, Ring, SecHead, StatusChip, Stepper } from "../components/ui";
 import { countdown, fmtDay, fmtTime, fmtWeekday, inrShort, timeLeft } from "../lib/format";
 import { useNow } from "../lib/clock";
 
@@ -67,10 +67,11 @@ function Hero() {
             <div key={k as string}><dt className="card-label">{k}</dt><dd style={{ margin: "4px 0 0", fontWeight: 800, fontSize: 15 }}>{v}</dd></div>
           ))}
         </dl>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }} className="sticky-cta">
-          <Link to="/rounds" className="btn btn-dark">{submitted ? "View submission" : "Continue submission"} <span className="arrow" aria-hidden="true">↗</span></Link>
-          <Link to="/hackathons/rebuild-26" className="btn btn-outline hidden md:inline-flex">Event details</Link>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+          <Link to="/rounds" className={`btn btn-dark${submitted ? "" : " hidden md:inline-flex"}`}>{submitted ? "View submission" : "Continue submission"} <span className="arrow" aria-hidden="true">↗</span></Link>
+          <Link to="/hackathons/rebuild-26" className="btn btn-outline">Event details</Link>
         </div>
+        {!submitted && <MobileCTA><Link to="/rounds" className="btn btn-dark">Continue submission <span className="arrow" aria-hidden="true">↗</span></Link></MobileCTA>}
       </div>
       <div className="hero-side">
         <div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router";
 import { Share2 } from "lucide-react";
 import { bySlug } from "../data/mock";
-import { Empty, StatusChip, Tabs } from "../components/ui";
+import { Empty, MobileCTA, StatusChip, Tabs } from "../components/ui";
 import { countdown, fmtDate, fmtDateTime, inr } from "../lib/format";
 import { useNow } from "../lib/clock";
 import { RegisterButton } from "./Hackathons";
@@ -82,7 +82,8 @@ export default function HackathonDetail() {
             {c && <div><span className="card-label">{h.status === "live" ? "Round 1 closes in" : "Registration closes in"}</span><p className="tnum" style={{ margin: "6px 0 2px", fontSize: 26, fontWeight: 900, letterSpacing: "-.03em" }}>{c.d}d {String(c.h).padStart(2, "0")}h {String(c.m).padStart(2, "0")}m</p><p className="card-label" style={{ margin: 0 }}>{fmtDateTime(deadline!)}</p></div>}
             {!c && <div><span className="card-label">Ended</span><p style={{ margin: "6px 0 0", fontWeight: 800 }}>{fmtDate(h.stages[h.stages.length - 1].end)}</p></div>}
             <div><span className="card-label">Team size</span><p style={{ margin: "6px 0 0", fontWeight: 800 }}>{h.teamMin === h.teamMax ? "Individual" : `${h.teamMin} to ${h.teamMax} members`}</p></div>
-            <div className="sticky-cta"><RegisterButton h={h} block /></div>
+            <RegisterButton h={h} block />
+            <MobileCTA><RegisterButton h={h} block /></MobileCTA>
             <a href={share} target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm"><Share2 size={15} aria-hidden="true" /> Share on WhatsApp</a>
           </div>
         </aside>

@@ -23,7 +23,7 @@ export default function Results() {
 
       <section id="results" aria-labelledby="h-results">
         <SecHead num="01" title="Your results" id="h-results" note={`${done.length} finished · ${wins} win · best rank #${best}`} />
-        <div className="grid gap-3 md:grid-cols-3" style={{ marginBottom: 14 }}>
+        <div className="mini-stats">
           {[["Hackathons finished", done.length], ["Podium finishes", podiums], ["Average score", (done.reduce((a, r) => a + r.result!.score, 0) / Math.max(1, done.length)).toFixed(1)]].map(([k, v]) => (
             <div key={k} className="card stat" style={{ minHeight: 110 }}><span className="card-label">{k}</span><strong>{v}</strong></div>
           ))}
@@ -34,13 +34,13 @@ export default function Results() {
             const res = r.result!;
             return (
               <div key={r.slug} className="row">
-                <div className="row-btn" style={{ cursor: "default", gridTemplateColumns: "56px minmax(0,1.4fr) 140px 120px 120px minmax(120px, auto)" }}>
-                  <span style={{ width: 44, height: 44, display: "grid", placeItems: "center", border: `2px solid ${MEDAL[res.place]}`, fontWeight: 900, fontSize: 16 }} className="tnum">#{res.rank}</span>
+                <div className="row-btn result-row">
+                  <span className="rank-box tnum" style={{ border: `2px solid ${MEDAL[res.place]}` }}>#{res.rank}</span>
                   <span style={{ minWidth: 0 }}><span className="row-cat">{h.category} · {fmtDate(h.stages[0].end)}</span><span className="row-title">{h.title}</span></span>
-                  <span className="row-meta">{res.place}<small>Result</small></span>
-                  <span className="row-meta tnum">{res.rank} / {res.of}<small>Rank</small></span>
-                  <span className="row-meta tnum">{res.score}<small>Score / 100</small></span>
-                  <span style={{ display: "flex", gap: 14, justifyContent: "flex-end", flexWrap: "wrap" }}>
+                  <span className="row-meta">{res.place}<small>Rank {res.rank}/{res.of}</small></span>
+                  <span className="row-meta tnum rr-hide">{res.rank} / {res.of}<small>Rank</small></span>
+                  <span className="row-meta tnum rr-hide">{res.score}<small>Score / 100</small></span>
+                  <span className="rr-links" style={{ display: "flex", gap: 14, justifyContent: "flex-end", flexWrap: "wrap" }}>
                     <button type="button" className="link-arrow purple" onClick={() => { setBoard(r.slug); document.getElementById("leaderboard")?.scrollIntoView({ behavior: "smooth" }); }}>Leaderboard</button>
                     {r.certificateId && <ArrowLink to="/certificates">Certificate</ArrowLink>}
                   </span>

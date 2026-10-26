@@ -4,7 +4,7 @@ import { Check, Lock, Send } from "lucide-react";
 import { toast } from "sonner";
 import { checklistDone, useStore } from "../app/store";
 import { bySlug, type CheckItem } from "../data/mock";
-import { Dialog, Empty, PageHead, Ring, StatusChip } from "../components/ui";
+import { Dialog, Empty, MobileCTA, PageHead, Ring, StatusChip } from "../components/ui";
 import { fmtDateTime, timeLeft } from "../lib/format";
 import { useNow } from "../lib/clock";
 
@@ -127,7 +127,7 @@ export default function Rounds() {
 
   const decision = isRebuild ? (submitted ? "Under review" : "Pending") : "Opens with Round 1";
   return (
-    <div className="view-in has-sticky-cta">
+    <div className="view-in">
       <PageHead eyebrow="Build / Rounds" title="ROUNDS." desc="All rounds on one page. Switch tabs to submit, track status, or review feedback." />
 
       <div className="round-tabs" role="tablist" aria-label="Hackathon rounds">
@@ -199,7 +199,8 @@ export default function Rounds() {
                     </li>
                   ))}
                 </ul>
-                <div className="sticky-cta"><button type="button" className="btn btn-dark" onClick={() => setDrawer(true)}>Continue submission <span className="arrow" aria-hidden="true">↗</span></button></div>
+                <div><button type="button" className="btn btn-dark" onClick={() => setDrawer(true)}>Continue submission <span className="arrow" aria-hidden="true">↗</span></button></div>
+                {!drawer && <MobileCTA><button type="button" className="btn btn-dark" onClick={() => setDrawer(true)}>Continue submission <span className="arrow" aria-hidden="true">↗</span></button></MobileCTA>}
               </div>
             )
           ) : locked(round) ? (
