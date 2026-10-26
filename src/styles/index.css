@@ -1,10 +1,21 @@
 @import "tailwindcss";
 
+/* Fonts: Inter latin (variable weight) + a 1 KB rupee-only subset, so "₹" never pulls the 85 KB latin-ext file.
+   DM Mono 500 only. Metric-matched fallback keeps layout shift near zero while fonts load. */
+@font-face { font-family: "Inter Variable"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("../assets/fonts/inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Inter Variable"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("../assets/fonts/inter-inr.woff2") format("woff2"); unicode-range: U+20B9; }
+@font-face { font-family: "DM Mono"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("../assets/fonts/dm-mono-500.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2191-2193; }
+@font-face { font-family: "Inter Fallback"; src: local("Arial"); size-adjust: 107%; ascent-override: 90%; descent-override: 22%; line-gap-override: 0%; }
+
 /* ───────────────────────── Tokens ─────────────────────────
    Brand values measured from campus-code-ten.vercel.app; "-ink" variants are
    darker/lighter twins that keep small text at WCAG AA (4.5:1). */
 @theme {
-  --font-sans: "Inter Variable", Inter, system-ui, sans-serif;
+  --font-sans: "Inter Variable", "Inter Fallback", system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, monospace;
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -210,7 +221,7 @@ section[id], h2[id] { scroll-margin-top: calc(var(--topbar-h) + 24px); }
 .main { position: relative; z-index: 1; margin-left: var(--sidebar-w); min-height: 100dvh; display: flex; flex-direction: column; }
 .topbar {
   position: sticky; top: 0; z-index: 20; height: var(--topbar-h); padding: 0 42px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  background: var(--topbar-bg); border-bottom: 1px solid var(--line); backdrop-filter: saturate(1.2);
+  background: var(--topbar-bg); border-bottom: 1px solid var(--line);
 }
 .crumb span { display: block; font: 500 11px var(--font-mono); letter-spacing: 0.15em; color: var(--ink-3); text-transform: uppercase; }
 .crumb strong { display: block; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; margin-top: 4px; text-transform: uppercase; }

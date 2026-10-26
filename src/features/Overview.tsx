@@ -35,7 +35,7 @@ function Countdown({ deadline }: { deadline: string }) {
           {units.map(([v, l], i) => (
             <div key={l} style={{ display: "contents" }}>
               {i > 0 && <span className="sep">:</span>}
-              <div className="unit"><b><NumberFlow value={v} format={{ minimumIntegerDigits: 2 }} trend={-1} /></b><small>{l}</small></div>
+              <div className="unit"><b>{l === "Sec" ? String(v).padStart(2, "0") : <NumberFlow value={v} format={{ minimumIntegerDigits: 2 }} trend={-1} />}</b><small>{l}</small></div>
             </div>
           ))}
         </div>

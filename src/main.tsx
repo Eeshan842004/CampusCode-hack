@@ -1,8 +1,6 @@
 import { StrictMode, lazy, Suspense, type ComponentType } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
-import "@fontsource-variable/inter/wght.css";
-import "@fontsource/dm-mono/500.css";
 import "./styles/index.css";
 import { StoreProvider } from "./app/store";
 import Shell from "./app/Shell";
