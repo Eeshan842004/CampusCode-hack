@@ -32,7 +32,7 @@ function Card({ r }: { r: Registration }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap", borderTop: "1px solid var(--line)", paddingTop: 16 }}>
           <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
             {team && (
-              <span className="avatar-stack" aria-label={`${team.name}: ${team.members.length} of ${team.size} members`}>
+              <span className="avatar-stack" role="img" aria-label={`${team.name}: ${team.members.length} of ${team.size} members`}>
                 {team.members.map((m) => { const p = m.id === "u-me" ? { name: s.profile.name, hue: me.hue } : personById(m.id)!; return <Avatar key={m.id} name={p.name} hue={p.hue} size={32} />; })}
                 {Array.from({ length: Math.max(0, team.size - team.members.length) }, (_, i) => <Avatar key={i} name="" empty size={32} />)}
               </span>

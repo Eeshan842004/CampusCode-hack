@@ -66,7 +66,7 @@ export default function Results() {
           </label>
         </SecHead>
         {rows.length ? (
-          <div className="card table-wrap">
+          <div className="card table-wrap" tabIndex={0} role="region" aria-label="Leaderboard table, scrolls sideways">
             <table className="table">
               <caption className="sr-only">{bySlug(board)!.title} leaderboard. Your row is highlighted.</caption>
               <thead><tr><th scope="col">Rank</th><th scope="col">Team</th><th scope="col">College</th><th scope="col" style={{ textAlign: "right" }}>Score</th></tr></thead>

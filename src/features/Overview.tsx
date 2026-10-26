@@ -140,7 +140,7 @@ function RegRow({ r }: { r: Registration }) {
       <Stepper step={r.slug === "rebuild-26" && s.submittedAt ? 3 : r.step} done={r.slug === "rebuild-26" && !!s.submittedAt} />
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
         {team ? (
-          <span className="avatar-stack" aria-label={`Team: ${team.members.length} of ${team.size}`}>
+          <span className="avatar-stack" role="img" aria-label={`Team: ${team.members.length} of ${team.size}`}>
             {team.members.map((m) => { const p = m.id === "u-me" ? { name: me.name, hue: me.hue } : personById(m.id)!; return <Avatar key={m.id} name={p.name} hue={p.hue} size={30} />; })}
             {Array.from({ length: team.size - team.members.length }, (_, i) => <Avatar key={i} name="" empty size={30} />)}
           </span>
