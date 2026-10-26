@@ -1,0 +1,12 @@
+node_modules
+dist
+.vercel
+.venv
+*.log
+# research material stays local
+reference/
+tools/
+design-system/
+CLAUDE.md
+ReBuild26_Master_Plan.md
+shots/
